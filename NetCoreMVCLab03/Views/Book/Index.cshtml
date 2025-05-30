@@ -1,0 +1,53 @@
+﻿
+@model IEnumerable<NetCoreMVCLab03.Models.Book>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "my_layout";
+}
+
+<h1>Books</h1>
+<form asp-action="" method="post" class="form-inline" role="form">
+    <div class="form-group">
+        <select name="AuthorId" class="form-control" asp-items="@ViewBag.AuthorsList">
+            <option value="">---Select Author---</option>
+        </select>
+        <select name="GenreId" class="form-control" asp-items="@ViewBag.GenresList">
+            <option value="">---Select Genre---</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a asp-action="Create" asp-controller="Book" class="btn btn-danger">Add new</a>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tieu de</th>
+            <th>Tac gia</th>
+            <th>The loai</th>
+            <th>Gia</th>
+            <th>Hinh anh</th>
+            <th>Lua chon</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Title</td>
+                <td>@book.AuthorId</td>
+                <td>@book.GenreId</td>
+                <td>@book.Price</td>
+                <td>
+                    <img src="@book.Image" title="@book.Title" alt="@book.Title Error" width="100" height="200" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Book" asp-route-id="@book.Id" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

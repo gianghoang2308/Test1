@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<partial name="Banner" />
+<hr />
+<button id="loadAjax" class="btn btn-primary">Load</button>
+<hr />
+<div id="data-from-ajax" class="row">Loading data...</div>
+<hr />
+@section Scripts
+{
+    <script>
+        $('#loadAjax').click(function)
+        {
+            $('#data-from-ajax').load("/Book/Popularbook");
+        }
+    </script>
+}
